@@ -23,4 +23,4 @@ COPY ./main.py ./
 EXPOSE 8000
 
 ENTRYPOINT ["/usr/local/bin/python3"]
-CMD ["/home/appmain.py"]
+CMD ["/home/app/main.py"]
