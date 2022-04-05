@@ -22,7 +22,13 @@ mr_count{project_url="https://gitlab.com/gitlab-course-public/my-static-website"
 # TYPE mr_ttl gauge
 mr_ttl{author="a.horbach",branch_name="feat/add-about",project_url="https://gitlab.com/gitlab-course-public/my-static-website/-/merge_requests/939",title="feat(about): add page",votes_diff="1"} 1.649081762e+012
 ```
+
+## PARAMS
+
+<!-- table -->
+
 # Roadmap
 
-- [ ] - TODO status
-- [ ] - example/kubernetes
+- [ ] - TODO metrics
+- [x] - example/kubernetes
+- [x] - grafana dashboard

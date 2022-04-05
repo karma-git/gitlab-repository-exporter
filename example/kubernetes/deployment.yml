@@ -1,0 +1,50 @@
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-repository-exporter
+  labels:
+    app: gitlab-repository-exporter
+spec:
+  selector:
+    app: gitlab-repository-exporter
+  ports:
+  - name: http
+    port: 8000
+    targetPort: http
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab-repository-exporter
+spec:
+  selector:
+    matchLabels:
+      app: gitlab-repository-exporter
+  template:
+    metadata:
+      labels:
+        app: gitlab-repository-exporter
+    spec:
+      containers:
+        - name: gitlab-repository-exporter
+          image: docker.io/karmawow/gitlab-repository-exporter:0.1.0
+          resources: {}
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: APP_DEBUG
+              value: "false"
+            - name: APP_GITLAB_URL
+              value: https://gitlab.slurm.io/
+            - name: APP_GITLAB_PROJECT_ID
+              value: "777"
+            - name: APP_GITLAB_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: gitlab-repository-exporter
+                  key: APP_GITLAB_ACCESS_TOKEN

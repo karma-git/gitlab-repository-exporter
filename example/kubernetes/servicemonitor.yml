@@ -1,0 +1,21 @@
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: gitlab-repository-exporter
+  labels:
+    app: gitlab-repository-exporter
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: gitlab-repository-exporter
+  endpoints:
+    - interval: 60s
+      path: /
+      port: http
+      scrapeTimeout: 25s
+  namespaceSelector:
+    matchNames:
+      - observability
